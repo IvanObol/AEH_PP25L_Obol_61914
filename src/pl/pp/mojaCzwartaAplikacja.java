@@ -5,21 +5,52 @@ import java.util.Scanner;
 public class mojaCzwartaAplikacja {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
- while (true) {
-     System.out.println("Podaj gorny i dolny limit");
-     int lower = scanner.nextInt();
-     int upper = scanner.nextInt();
-     if (lower>=upper) {
-         System.out.println("Gorna muszi byc większa od dolnej");
-         break;
-     }
-     int square = lower * lower;
-     int square2 = upper * upper;
-     int summ = 0;
-     for (int i = lower; i <= upper; i++) {
-         summ += i*i;
 
-     }
-     System.out.println("Summa kwardratow międze dolnej " +square + " i gornej " + square2 + " jest " + summ);
+        while (true) {
+            System.out.println("Kalkulator");
+            System.out.print("Podaj pierwszą liczbę: ");
+            double num1 = scanner.nextDouble();
+
+            System.out.print("Podaj operator (+, -, *, /): ");
+            char operator = scanner.next().charAt(0);
+
+            System.out.print("Podaj drugą liczbę: ");
+            double num2 = scanner.nextDouble();
+
+            double result;
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 != 0) {
+                        result = num1 / num2;
+                    } else {
+                        System.out.println("Dzielenie przez zero niemozliwe");
+                        continue;
+                    }
+                    break;
+                default:
+                    System.out.println("Nieprawidłowy operator!");
+                    continue;
+            }
+
+            System.out.println("Wynik: " + result);
+
+            System.out.print("Czy chcesz kontynuować? (tak czy nie): ");
+            String kontynuuj = scanner.next();
+            if (!kontynuuj.equalsIgnoreCase("tak")) {
+                break;
+            }
+        }
+
+        scanner.close();
     }
-}}
+}
